@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void openFabMenu() {
         isFabOpen = true;
 
