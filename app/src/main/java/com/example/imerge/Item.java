@@ -1,5 +1,7 @@
-// Item.java
 package com.example.imerge;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class Item {
     private int id;
@@ -7,9 +9,9 @@ public class Item {
     private int jumlah;
     private double harga;
     private String kategori;
-    private String gambar;
+    private byte[] gambar;
 
-    public Item(int id, String namaBarang, int jumlah, double harga, String kategori, String gambar) {
+    public Item(int id, String namaBarang, int jumlah, double harga, String kategori, byte[] gambar) {
         this.id = id;
         this.namaBarang = namaBarang;
         this.jumlah = jumlah;
@@ -18,7 +20,6 @@ public class Item {
         this.gambar = gambar;
     }
 
-    // Getters and Setters for the fields
     public int getId() {
         return id;
     }
@@ -39,7 +40,11 @@ public class Item {
         return kategori;
     }
 
-    public String getGambar() {
+    public byte[] getGambar() {
         return gambar;
+    }
+
+    public Bitmap getBitmapGambar() {
+        return BitmapFactory.decodeByteArray(gambar, 0, gambar.length);
     }
 }

@@ -97,12 +97,8 @@ public class DBManager {
                         int jumlah = cursor.getInt(2);
                         double harga = cursor.getDouble(3);
                         String kategori = cursor.getString(4);
-
-                        // Correct handling of BLOB column
-                        byte[] gambarBytes = cursor.getBlob(5); // Get BLOB as byte array
-                        String gambar = Arrays.toString(gambarBytes); // If you need to store it as a string (e.g., for debugging)
-
-                        Item item = new Item(id, namaBarang, jumlah, harga, kategori, gambar);
+                        byte[] gambarBlob = cursor.getBlob(5); // Retrieve the BLOB as byte[]
+                        Item item = new Item(id, namaBarang, jumlah, harga, kategori, gambarBlob);
                         itemList.add(item);
                     } while (cursor.moveToNext());
                 }
@@ -111,6 +107,7 @@ public class DBManager {
         }
         return itemList;
     }
+
 
 
 

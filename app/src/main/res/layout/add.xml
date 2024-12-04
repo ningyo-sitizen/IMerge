@@ -102,12 +102,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.773" />
 
-    Untuk menambahkan fitur mengunggah dan menampilkan gambar yang dipilih, Anda dapat memanfaatkan
-    ImageView untuk menampilkan gambar, dan Intent dengan ACTION_GET_CONTENT atau Intent.ACTION_PICK
-    untuk memilih gambar dari galeri. Berikut adalah langkah-langkahnya:
-    1. Perbarui Layout XML
-
-    Tambahkan ImageView dan tombol untuk memilih gambar ke dalam layout Anda:
 
     <ImageView
         android:id="@+id/selectedImage"
@@ -125,10 +119,9 @@
         android:id="@+id/button_select_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="124dp"
         android:text="Pilih Gambar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/selectedImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
