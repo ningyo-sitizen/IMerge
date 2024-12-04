@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <EditText
-        android:id="@+id/nama_barang"
+        android:id="@+id/nama_barangin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nama Barang"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jumlah Barang"
-        app:layout_constraintTop_toBottomOf="@id/nama_barang"
+        app:layout_constraintTop_toBottomOf="@id/nama_barangin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
@@ -88,4 +88,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kategori" />
 
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="141dp"
+        android:layout_marginBottom="242dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773" />
+
+    Untuk menambahkan fitur mengunggah dan menampilkan gambar yang dipilih, Anda dapat memanfaatkan
+    ImageView untuk menampilkan gambar, dan Intent dengan ACTION_GET_CONTENT atau Intent.ACTION_PICK
+    untuk memilih gambar dari galeri. Berikut adalah langkah-langkahnya:
+    1. Perbarui Layout XML
+
+    Tambahkan ImageView dan tombol untuk memilih gambar ke dalam layout Anda:
+
+    <ImageView
+        android:id="@+id/selectedImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="124dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner1" />
+
+    <Button
+        android:id="@+id/button_select_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Pilih Gambar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectedImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager {
     private SQLiteDatabase database;
@@ -23,14 +27,17 @@ public class DBManager {
         dbHelper.close();
     }
 
+
+
     public void insert(String namaBarang, int jumlah, double harga, String kategori, byte[] gambar) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.NamaBarang, namaBarang);
-        contentValues.put(DatabaseHelper.jumlah, jumlah);
-        contentValues.put(DatabaseHelper.harga, harga);
-        contentValues.put(DatabaseHelper.kategori, kategori);
-        contentValues.put(DatabaseHelper.gambar, gambar);
-        database.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
+        ContentValues values = new ContentValues();
+        values.put("nama_barang", namaBarang);
+        values.put("jumlah", jumlah);
+        values.put("harga", harga);
+        values.put("kategori", kategori);
+        values.put("gambarBLOB", gambar);
+
+        database.insert("storage", null, values);
     }
 
 
@@ -50,6 +57,8 @@ public class DBManager {
         return cursor;
     }
 
+
+
     public int update(long id, String namaBarang, int jumlah, double harga, String kategori, byte[] gambar) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.NamaBarang, namaBarang);
@@ -63,5 +72,31 @@ public class DBManager {
     public void delete(long id) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + " = ?", new String[]{String.valueOf(id)});
     }
+    public List<Item> getAllItems() {
+        List<Item> itemList = new ArrayList<>();
+        String[] columns = {"_id", "nama_barang", "jumlah", "harga", "kategori", "gambarBLOB"};
+        Cursor cursor = database.query("storage", columns, null, null, null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    // Use column indices based on the order in 'columns' array
+                    int id = cursor.getInt(0); // _id is at index 0
+                    String namaBarang = cursor.getString(1); // nama_barang is at index 1
+                    int jumlah = cursor.getInt(2); // jumlah is at index 2
+                    double harga = cursor.getDouble(3); // harga is at index 3
+                    String kategori = cursor.getString(4); // kategori is at index 4
+                    String gambar = cursor.getString(5); // gambarBLOB is at index 5
+
+                    Item item = new Item(id, namaBarang, jumlah, harga, kategori, gambar);
+                    itemList.add(item);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        return itemList;
+    }
+
 }
+
 

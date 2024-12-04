@@ -17,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private FloatingActionButton fabMain, fabAdd, fabRemove, fabLog;
+    private FloatingActionButton fabMain, fabAdd, fabRemove;
     private DBManager dbManager;
     private boolean isFabOpen = false;
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         fabMain = findViewById(R.id.fab_main);
         fabAdd = findViewById(R.id.fab_add);
         fabRemove = findViewById(R.id.fab_remove);
-        fabLog = findViewById(R.id.fab_log);
+
 
         dbManager = new DBManager(this);
         dbManager.open();
@@ -49,18 +49,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                String namaBarang = "Sample Item";
-//                int jumlah = 10;
-//                double harga = 99.99;
-//                String kategori = "Sample Category";
-//                byte[] gambar = null;
-//
-//                // Tambahkan data ke database
-//                dbManager.insert(namaBarang, jumlah, harga, kategori, gambar);
-//
-//                Toast.makeText(MainActivity.this, "You clicked add button", Toast.LENGTH_LONG).show();
-//                closeFabMenu();
-
                 Intent intent = new Intent(MainActivity.this, add.class);
                 startActivity(intent);
             }
@@ -74,13 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fabLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "You clicked remove button", Toast.LENGTH_LONG).show();
-                closeFabMenu();
-            }
-        });
     }
 
     private void openFabMenu() {
@@ -96,10 +77,6 @@ public class MainActivity extends AppCompatActivity {
         translateRemove.setDuration(300);
         fabRemove.startAnimation(translateRemove);
 
-        fabLog.setVisibility(View.VISIBLE);
-        TranslateAnimation translateLog = new TranslateAnimation(0, 0, fabMain.getHeight() * 3, 0);
-        translateLog.setDuration(300);
-        fabLog.startAnimation(translateLog);
     }
 
     private void closeFabMenu() {
@@ -115,11 +92,8 @@ public class MainActivity extends AppCompatActivity {
         fabRemove.startAnimation(translateRemove);
         fabRemove.setVisibility(View.GONE);
 
-        TranslateAnimation translateLog = new TranslateAnimation(0, 0, 0, fabMain.getHeight() * 3);
-        translateLog.setDuration(300);
-        fabLog.startAnimation(translateLog);
-        fabLog.setVisibility(View.GONE);
     }
+
 
 
 }
