@@ -1,5 +1,6 @@
 package com.example.imerge;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -7,11 +8,17 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
     private FloatingActionButton fabMain, fabAdd, fabRemove, fabLog;
+    private DBManager dbManager;
     private boolean isFabOpen = false;
 
     @Override
@@ -23,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         fabAdd = findViewById(R.id.fab_add);
         fabRemove = findViewById(R.id.fab_remove);
         fabLog = findViewById(R.id.fab_log);
+
+        dbManager = new DBManager(this);
+        dbManager.open();
 
         fabMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,8 +48,21 @@ public class MainActivity extends AppCompatActivity {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "You clicked add button", Toast.LENGTH_LONG).show();
-                closeFabMenu();
+
+//                String namaBarang = "Sample Item";
+//                int jumlah = 10;
+//                double harga = 99.99;
+//                String kategori = "Sample Category";
+//                byte[] gambar = null;
+//
+//                // Tambahkan data ke database
+//                dbManager.insert(namaBarang, jumlah, harga, kategori, gambar);
+//
+//                Toast.makeText(MainActivity.this, "You clicked add button", Toast.LENGTH_LONG).show();
+//                closeFabMenu();
+
+                Intent intent = new Intent(MainActivity.this, add.class);
+                startActivity(intent);
             }
         });
 

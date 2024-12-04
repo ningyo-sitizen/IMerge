@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String kategori = "kategori";
 
-    public static final String gambar = "gambar";
+    public static final String gambar = "gambarBLOB";
 
     // Nama Database
     static final String DB_NAME = "IMERGE.DB";
@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + jumlah + " INTEGER NOT NULL, "
             + harga + " REAL, "
             + kategori + " TEXT NOT NULL, "
-            + gambar +"BLOB);";
+            + gambar +" TEXT);";
 
 
     public DatabaseHelper(Context context) {

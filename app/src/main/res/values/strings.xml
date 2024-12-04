@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">IMerge</string>
+
+    <string-array name="karegori">
+        <item>minuman</item>
+        <item>makanan</item>
+        <item>bukan makanan</item>
+    </string-array>
 </resources>
