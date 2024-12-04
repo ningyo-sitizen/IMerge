@@ -8,6 +8,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,10 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         dbManager = new DBManager(this);
-        List<Item> items = dbManager.getAllItems();
         dbManager.open();
+        List<Item> items = dbManager.getAllItems();
+
+
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         ItemAdapter adapter = new ItemAdapter(items);
         recyclerView.setAdapter(adapter);
 

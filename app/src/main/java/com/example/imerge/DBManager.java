@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DBManager {
@@ -85,39 +86,32 @@ public class DBManager {
         List<Item> itemList = new ArrayList<>();
         if (database == null) {
             Log.e("DBManager", "Database is null! Ensure it's opened before accessing.");
-            return itemList;
-        }
-        String[] columns = {"_id", "nama_barang", "jumlah", "harga", "kategori", "gambarBLOB"};
-        Cursor cursor = database.query("storage", columns, null, null, null, null, null);
-        if (cursor != null) {
-            // Get column indices for each column to check if they exist
-            int idIndex = cursor.getColumnIndex("_id");
-            int namaBarangIndex = cursor.getColumnIndex("nama_barang");
-            int jumlahIndex = cursor.getColumnIndex("jumlah");
-            int hargaIndex = cursor.getColumnIndex("harga");
-            int kategoriIndex = cursor.getColumnIndex("kategori");
-            int gambarIndex = cursor.getColumnIndex("gambarBLOB");
+        } else {
+            String[] columns = {"_id", "nama_barang", "jumlah", "harga", "kategori", "gambarBLOB"};
+            Cursor cursor = database.query("storage", columns, null, null, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(0);
+                        String namaBarang = cursor.getString(1);
+                        int jumlah = cursor.getInt(2);
+                        double harga = cursor.getDouble(3);
+                        String kategori = cursor.getString(4);
 
-            Log.d("DBManager", "Column indices: _id=" + idIndex + ", nama_barang=" + namaBarangIndex + ", jumlah=" + jumlahIndex +
-                    ", harga=" + hargaIndex + ", kategori=" + kategoriIndex + ", gambarBLOB=" + gambarIndex);
+                        // Correct handling of BLOB column
+                        byte[] gambarBytes = cursor.getBlob(5); // Get BLOB as byte array
+                        String gambar = Arrays.toString(gambarBytes); // If you need to store it as a string (e.g., for debugging)
 
-            if (idIndex != -1) {
-                cursor.moveToFirst();
-                do {
-                    int id = cursor.getInt(idIndex);
-                    String namaBarang = cursor.getString(namaBarangIndex);
-                    int jumlah = cursor.getInt(jumlahIndex);
-                    double harga = cursor.getDouble(hargaIndex);
-                    String kategori = cursor.getString(kategoriIndex);
-                    String gambar = cursor.getString(gambarIndex);
-                    // Add item to the list
-                } while (cursor.moveToNext());
+                        Item item = new Item(id, namaBarang, jumlah, harga, kategori, gambar);
+                        itemList.add(item);
+                    } while (cursor.moveToNext());
+                }
+                cursor.close();
             }
-            cursor.close();
         }
-
         return itemList;
     }
+
 
 
 }

@@ -29,25 +29,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item currentItem = itemList.get(position);
-
-        // Bind the data from currentItem to the views
         holder.itemName.setText(currentItem.getNamaBarang());
-//        holder.itemId.setText("ID: " + currentItem.getId());
-
-        // You can also handle the image here using an image loading library (e.g., Glide or Picasso)
-        // holder.itemImage.setImageResource(currentItem.getGambar());  // For example, if it's a drawable resource
-
-        // If you want to load from a URL, you could use Glide or Picasso
-        // Glide.with(holder.itemView.getContext()).load(currentItem.getGambar()).into(holder.itemImage);
-
-        // Handle button clicks for detail and delete
-        holder.btnDetail.setOnClickListener(v -> {
-            // Handle detail button click (e.g., show item details)
-        });
-
-        holder.btnDelete.setOnClickListener(v -> {
-            // Handle delete button click (e.g., remove item from the list)
-        });
     }
 
     @Override
