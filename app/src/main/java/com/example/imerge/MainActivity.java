@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         dbManager = new DBManager(this);
+        List<Item> items = dbManager.getAllItems();
         dbManager.open();
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        ItemAdapter adapter = new ItemAdapter(items);
+        recyclerView.setAdapter(adapter);
 
         fabMain.setOnClickListener(new View.OnClickListener() {
             @Override

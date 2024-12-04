@@ -9,13 +9,8 @@
     <!-- Item Image -->
     <TextView
         android:id="@+id/item_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Item Name"
-        android:textSize="16sp"
-        android:gravity="center_vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"/>
-
+        android:padding="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         // Bind the data from currentItem to the views
         holder.itemName.setText(currentItem.getNamaBarang());
-        holder.itemId.setText("ID: " + currentItem.getId());
+//        holder.itemId.setText("ID: " + currentItem.getId());
 
         // You can also handle the image here using an image loading library (e.g., Glide or Picasso)
         // holder.itemImage.setImageResource(currentItem.getGambar());  // For example, if it's a drawable resource

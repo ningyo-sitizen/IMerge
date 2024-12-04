@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +18,18 @@ public class DBManager {
 
     public DBManager(Context context) {
         dbHelper = new DatabaseHelper(context);
+        Log.d("DBManager", "DatabaseHelper initialized.");
     }
 
     public void open() {
-        database = dbHelper.getWritableDatabase();
-
+        if (database == null) {
+            database = dbHelper.getWritableDatabase();
+            if (database != null) {
+                Log.d("DBManager", "Database opened successfully.");
+            } else {
+                Log.e("DBManager", "Failed to open database.");
+            }
+        }
     }
 
     public void close() {
@@ -74,28 +83,42 @@ public class DBManager {
     }
     public List<Item> getAllItems() {
         List<Item> itemList = new ArrayList<>();
+        if (database == null) {
+            Log.e("DBManager", "Database is null! Ensure it's opened before accessing.");
+            return itemList;
+        }
         String[] columns = {"_id", "nama_barang", "jumlah", "harga", "kategori", "gambarBLOB"};
         Cursor cursor = database.query("storage", columns, null, null, null, null, null);
-
         if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    // Use column indices based on the order in 'columns' array
-                    int id = cursor.getInt(0); // _id is at index 0
-                    String namaBarang = cursor.getString(1); // nama_barang is at index 1
-                    int jumlah = cursor.getInt(2); // jumlah is at index 2
-                    double harga = cursor.getDouble(3); // harga is at index 3
-                    String kategori = cursor.getString(4); // kategori is at index 4
-                    String gambar = cursor.getString(5); // gambarBLOB is at index 5
+            // Get column indices for each column to check if they exist
+            int idIndex = cursor.getColumnIndex("_id");
+            int namaBarangIndex = cursor.getColumnIndex("nama_barang");
+            int jumlahIndex = cursor.getColumnIndex("jumlah");
+            int hargaIndex = cursor.getColumnIndex("harga");
+            int kategoriIndex = cursor.getColumnIndex("kategori");
+            int gambarIndex = cursor.getColumnIndex("gambarBLOB");
 
-                    Item item = new Item(id, namaBarang, jumlah, harga, kategori, gambar);
-                    itemList.add(item);
+            Log.d("DBManager", "Column indices: _id=" + idIndex + ", nama_barang=" + namaBarangIndex + ", jumlah=" + jumlahIndex +
+                    ", harga=" + hargaIndex + ", kategori=" + kategoriIndex + ", gambarBLOB=" + gambarIndex);
+
+            if (idIndex != -1) {
+                cursor.moveToFirst();
+                do {
+                    int id = cursor.getInt(idIndex);
+                    String namaBarang = cursor.getString(namaBarangIndex);
+                    int jumlah = cursor.getInt(jumlahIndex);
+                    double harga = cursor.getDouble(hargaIndex);
+                    String kategori = cursor.getString(kategoriIndex);
+                    String gambar = cursor.getString(gambarIndex);
+                    // Add item to the list
                 } while (cursor.moveToNext());
             }
             cursor.close();
         }
+
         return itemList;
     }
+
 
 }
 
