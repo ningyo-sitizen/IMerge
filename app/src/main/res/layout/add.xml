@@ -7,121 +7,133 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Image Selection -->
+    <ImageView
+        android:id="@+id/selectedImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_select_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Pilih Gambar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectedImage" />
+
+    <!-- Nama Barang -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nama Barang"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_select_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintVertical_bias="0.1" />
+        android:layout_marginTop="16dp" />
 
     <EditText
         android:id="@+id/nama_barangin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nama Barang"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Jumlah Barang -->
     <TextView
         android:id="@+id/jumlah_barang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jumlah Barang"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/nama_barangin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/jumlah_barangIN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Jumlah Barang"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/jumlah_barang"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Harga Barang -->
     <TextView
         android:id="@+id/harga_barang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Harga Barang"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/jumlah_barangIN"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/harga_barangIN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Harga Barang"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/harga_barang"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Kategori -->
     <TextView
         android:id="@+id/kategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kategori Barang"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/harga_barangIN"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kategori" />
 
+    <!-- Buttons -->
     <Button
         android:id="@+id/button_add"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginBottom="242dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.773" />
-
-
-    <ImageView
-        android:id="@+id/selectedImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="124dp"
-        android:background="@android:color/darker_gray"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Tambah"
+        app:layout_constraintEnd_toStartOf="@+id/button_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner1" />
 
     <Button
-        android:id="@+id/button_select_image"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_back"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="Pilih Gambar"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Kembali"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selectedImage" />
+        app:layout_constraintStart_toEndOf="@+id/button_add"
+        app:layout_constraintTop_toBottomOf="@id/spinner1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,7 @@ public class add extends AppCompatActivity {
     EditText namabarang;
     EditText jumlahbarang;
     EditText hargabarang;
-    Button Button_add;
+    Button Button_add,Button_back;
 
     private ImageView selectedImage;
     private byte[] imageByteArray;
@@ -62,6 +62,14 @@ public class add extends AppCompatActivity {
         namabarang = findViewById(R.id.nama_barangin);
         jumlahbarang = findViewById(R.id.jumlah_barangIN);
         hargabarang = findViewById(R.id.harga_barangIN);
+        Button_back = findViewById(R.id.button_back);
+        Button_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(add.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         Button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +80,8 @@ public class add extends AppCompatActivity {
 
                 dbManager.insert(namaBarang, jumlah, harga, kategori, imageByteArray);
                 Toast.makeText(add.this, "Data berhasil disimpan!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(add.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
